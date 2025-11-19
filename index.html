@@ -6,35 +6,50 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- start screen modal -->
+  <!-- News-style site header -->
+  <header id="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        Global Daily<span>News</span>
+      </div>
+      <nav class="main-nav">
+        <a href="#">Top Stories</a>
+        <a href="#">World</a>
+        <a href="#">Technology</a>
+        <a href="#">Health</a>
+        <a href="#">Business</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Start screen modal -->
   <div id="start-screen" class="modal visible">
     <div class="modal-content">
       <h2>Ad Impact Study</h2>
       <p>You will see a page with several article titles. Your task is to find and click:</p>
-      <p><strong>“AI Systems in Modern Healthcare”</strong></p>
+      <p><strong>"AI Systems in Modern Healthcare"</strong></p>
       <p>Work as fast and accurately as possible. Try to ignore ads or popups.</p>
       <p>
-        1. Choose a condition (No Ads / Medium Ads / Heavy Ads).<br>
+        1. Choose a condition (No Ads / Heavy Ads).<br>
         2. Click <strong>Start Task</strong> to begin the timer.<br>
-        3. Click the correct article.<br>
+        3. Scroll if needed and click the correct article.<br>
         4. Fill out the short survey.
       </p>
       <button id="beginExperiment">Got it, let me start</button>
     </div>
   </div>
 
-  <!-- top controls -->
+  <!-- Top controls -->
   <div id="experiment-controls" class="disabled">
     <label for="condition">Condition:</label>
     <select id="condition">
       <option value="none">No Ads</option>
-      <option value="medium" selected>Medium Ads</option>
-      <option value="heavy">Heavy Ads</option>
+      <option value="heavy" selected>Heavy Ads</option>
     </select>
     <button id="startBtn">Start Task</button>
   </div>
 
-  <!-- status bar -->
+  <!-- Status bar -->
   <div id="status-bar">
     <span id="status-condition">Condition: —</span>
     <span id="status-timer">Time: 0.00s</span>
@@ -42,44 +57,111 @@
     <span id="status-adclicks">Ad Clicks: 0</span>
   </div>
 
+  <!-- Big top banner area (only in heavy condition) -->
+  <div id="top-banner" class="hidden"></div>
+
   <div id="page">
     <aside id="left-ads" class="ad-column"></aside>
 
     <main id="content">
-      <h1>Find the Correct Article</h1>
-      <p id="task-text">
-        Task: Find and click the article titled
-        <strong>“AI Systems in Modern Healthcare”</strong> as fast as you can.
+      <h1 class="section-title">Today’s Headlines</h1>
+      <p id="task-text" class="task-intro">
+        <strong>Task:</strong> Find and click the article titled
+        <em>"AI Systems in Modern Healthcare"</em> as fast as you can. Scroll through the news feed to locate it.
       </p>
 
+      <!-- Mid-page horizontal banner slot -->
+      <div id="mid-banner" class="banner-row hidden"></div>
+
       <ul id="article-list">
+        <!-- Many filler articles to force scrolling -->
         <li class="article" data-correct="false">Sports Update: Local team wins championship</li>
-        <li class="article" data-correct="false">Opinion: Why ads are not that bad</li>
-        <li class="article" data-correct="true">AI Systems in Modern Healthcare</li>
+        <li class="article" data-correct="false">Opinion: Why ads might not be that bad after all</li>
         <li class="article" data-correct="false">Travel Guide: Hidden beaches in Spain</li>
-        <li class="article" data-correct="false">Markets: Tech stocks mixed today</li>
+        <li class="article" data-correct="false">Markets: Tech stocks mixed as investors watch earnings</li>
+        <li class="article" data-correct="false">Entertainment: New superhero movie breaks box office records</li>
+        <li class="article" data-correct="false">Lifestyle: 10 morning habits to boost productivity</li>
+        <li class="article" data-correct="false">Food Review: Best ramen spots in your city this winter</li>
+        <li class="article" data-correct="false">Tech Review: Budget laptops under $600 ranked</li>
+        <li class="article" data-correct="false">Travel: Weekend getaways within 3 hours of home</li>
+        <li class="article" data-correct="false">Local News: City council debates downtown parking changes</li>
+        <li class="article" data-correct="false">Health: How much sleep do adults really need?</li>
+        <li class="article" data-correct="false">Finance: Simple steps to start investing in index funds</li>
+        <li class="article" data-correct="false">Gaming: Top 5 cozy games to relax with</li>
+        <li class="article" data-correct="false">Science: New exoplanet discovered in nearby star system</li>
+        <li class="article" data-correct="false">Education: Online vs in-person classes compared</li>
+        <li class="article" data-correct="false">Opinion: Are smartphones making us less patient?</li>
+        <li class="article" data-correct="false">World: Leaders meet to discuss climate targets</li>
+        <li class="article" data-correct="false">Business: Remote work trends continue into next year</li>
+        <li class="article" data-correct="false">Culture: The rise of retro fashion and thrift shopping</li>
+        <li class="article" data-correct="false">Auto: Electric vehicles now outselling diesel in some regions</li>
+
+        <!-- Target article somewhere in the middle so you must scroll -->
+        <li class="article" data-correct="true">AI Systems in Modern Healthcare</li>
+
+        <!-- More filler below to keep scrolling -->
+        <li class="article" data-correct="false">Weather: Storm system moving in this weekend</li>
+        <li class="article" data-correct="false">Career: How to prepare for your first interview</li>
+        <li class="article" data-correct="false">Tech: Why everyone is talking about quantum computing</li>
+        <li class="article" data-correct="false">Health: The truth about energy drinks and focus</li>
+        <li class="article" data-correct="false">Culture: The return of vinyl records among students</li>
+        <li class="article" data-correct="false">Local: New bike lanes added across downtown core</li>
+        <li class="article" data-correct="false">Science: Researchers test new battery technology</li>
+        <li class="article" data-correct="false">Business: Small shops adapt to online competition</li>
+        <li class="article" data-correct="false">Opinion: Should social media have a daily time limit?</li>
+        <li class="article" data-correct="false">Travel: Budget airlines add new international routes</li>
+        <li class="article" data-correct="false">Education: Study tips from top-performing students</li>
+        <li class="article" data-correct="false">Sports: Rising star breaks long-standing team record</li>
+        <li class="article" data-correct="false">World: Aid organizations respond to regional flooding</li>
+        <li class="article" data-correct="false">Finance: How to build an emergency fund in one year</li>
+        <li class="article" data-correct="false">Lifestyle: Digital detox weekends are gaining popularity</li>
+        <li class="article" data-correct="false">Opinion: Are we too dependent on navigation apps?</li>
+        <li class="article" data-correct="false">Tech: Students share how they actually use AI tools</li>
+        <li class="article" data-correct="false">Health: Why walking after meals helps your body</li>
+        <li class="article" data-correct="false">Gaming: New indie title surprises critics</li>
+        <li class="article" data-correct="false">Science: Space agency announces new moon mission timeline</li>
+        <li class="article" data-correct="false">Culture: Campus events you might have missed this week</li>
       </ul>
-
-      <!-- after task -->
-      <div id="survey" class="hidden">
-        <h2>Quick Survey</h2>
-        <label for="distraction">How distracting was this page? (1–7)</label>
-        <input type="number" id="distraction" min="1" max="7" value="4" />
-        <button id="finishBtn">Finish</button>
-      </div>
-
-      <textarea id="export" class="hidden" rows="6" cols="60"></textarea>
     </main>
 
     <aside id="right-ads" class="ad-column"></aside>
   </div>
 
-  <!-- popup ad -->
+  <!-- Sticky bottom banner ad -->
+  <div id="bottom-banner" class="bottom-banner hidden"></div>
+
+  <!-- Survey & CSV modal -->
+  <div id="survey-modal" class="modal">
+    <div class="modal-content">
+      <h2>Quick Survey</h2>
+      <div id="survey">
+        <label for="distraction">How distracting was this page? (1–7)</label>
+        <input type="number" id="distraction" min="1" max="7" value="4" />
+        <button id="finishBtn">Generate CSV Row</button>
+      </div>
+      <div id="csv-block" class="hidden">
+        <h3>Your CSV Data</h3>
+        <label for="csv-header">Header (once in your file)</label>
+        <textarea id="csv-header" rows="2" readonly></textarea>
+        <label for="csv-row">Your participant row</label>
+        <textarea id="csv-row" rows="2" readonly></textarea>
+      </div>
+      <button id="closeSurveyModal" class="close-survey-btn hidden">Close</button>
+    </div>
+  </div>
+
+  <!-- Popup ad -->
   <div id="popup-ad" class="popup hidden">
     <div class="popup-content">
-      <p>🔥 Limited Offer! Click here!</p>
+      <p>🔥 Limited Offer! Click the ad below!</p>
+      <div id="popup-image-container"></div>
       <button id="closePopup" aria-label="Close popup">X</button>
     </div>
+  </div>
+
+  <!-- Flashing intrusive ad -->
+  <div id="flash-ad" class="flash-ad hidden">
+    🚨 FLASH SALE! CLICK NOW 🚨
   </div>
 
   <script src="script.js"></script>
